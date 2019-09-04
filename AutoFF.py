@@ -1,25 +1,34 @@
 import pandas as pd
 
+print("type csv file name")
 importFile = input()
 df = pd.read_csv(importFile)
-answers = df.iloc[100]
+answers = df.iloc[23]
 my_dict={}
 for index, row in df.iterrows():
-    username = row['B'].to_string()
-    userPoints
-    for i in range(2, 12):
-        matchPoints
-        userPred = row[i].to_string()
-        ans = answers[i].to_string()
+    if row[0] == "ans":
+        break
+    userPointList = []
+    userPoints = 0
+    username = row[1]
+    for i in range(2, 12): 
+        userPred = row[i]
+        ans = answers[i]
         if userPred == ans:
             matchPoints = 7
-        elif ans[0] - ans[2] == userPred[0] - userPred[2]:
+        elif int(ans[0]) - int(ans[2]) == int(userPred[0]) - int(userPred[2]):
             matchPoints = 4
-        elif (ans[0] - ans[2])*(userPred[0] - userPred[2]) > 0:
+        elif (int(ans[0]) - int(ans[2]))*(int(userPred[0]) - int(userPred[2])) > 0:
             matchPoints = 3
+        userPointList.append(matchPoints)
         userPoints += matchPoints
-    my_dict[username] = userPoints
+    userPointList.append(userPoints)
+    my_dict[username] = userPointList
 
-for key,val in my_dict.items():
-    print(key, "=>", val)
-input()
+collumnList = list(df.columns.values)
+collumnList. pop(0)
+collumnList. pop(0)
+collumnList.append("Total Points")
+
+finalData = pd.DataFrame.from_dict(my_dict, orient='index', columns=collumnList)
+finalData.to_csv('out.csv')
