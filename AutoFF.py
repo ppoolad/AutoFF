@@ -3,7 +3,7 @@ import pandas as pd
 print("type csv file name")
 importFile = input()
 df = pd.read_csv(importFile)
-answers = df.iloc[23]
+answers = df.iloc[-1]
 weeklyDict={}
 sum_dict={}
 username_list=[]
