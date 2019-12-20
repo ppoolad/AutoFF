@@ -58,7 +58,7 @@ for key, value in totals_dict.items():
         totals_dict[key] = []
 
 
-totals_dict[week_index] = ['']*30
+##totals_dict[week_index] = ['']*30
 
 for index, user in enumerate(totals_dict['username']):
     if user.lower() in sum_dict.keys():
@@ -69,7 +69,7 @@ for key,value in totals_dict.items():
             if item == '':
                 totals_dict[key][index] = 0
                 
-totals_dict["Total"] = ['']*30
+##totals_dict["Total"] = ['']*30
 
 # calculate total
 for index, user in enumerate(totals_dict['username']):
