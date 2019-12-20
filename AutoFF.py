@@ -81,5 +81,6 @@ for index, user in enumerate(totals_dict['username']):
 weeklyData.to_csv('weekly.csv')
 totals_data = pd.DataFrame({ key:pd.Series(value) for key, value in totals_dict.items() })
 totals_data = totals_data.sort_values(by=["Total"],ascending= False)
+totals_data['Rank'] =  totals_data['Total'].rank(method='min',ascending = False)
 totals_data.reset_index(drop=True,inplace=True)
 totals_data.to_csv('total.csv', index=False)
