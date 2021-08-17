@@ -4,6 +4,7 @@ print("type csv file name")
 importFile = input()
 df = pd.read_csv(importFile)
 answers = df.iloc[-1]
+number_of_games = answers.size
 weeklyDict={}
 sum_dict={}
 username_list=[]
@@ -14,7 +15,7 @@ for index, row in df.iterrows():
     userPoints = 0
     username = row[1].lower()
     username_list.append(username)
-    for i in range(2, 12): 
+    for i in range(2, number_of_games): 
         userPred = row[i].replace(" ","");
         ans = answers[i]
         if userPred == ans:
@@ -62,6 +63,7 @@ for key, value in totals_dict.items():
 
 for index, user in enumerate(totals_dict['username']):
     if user.lower() in sum_dict.keys():
+        print(user,index,week_index)
         totals_dict[week_index][index] = sum_dict[user]
 
 for key,value in totals_dict.items(): 
