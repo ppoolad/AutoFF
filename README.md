@@ -10,8 +10,8 @@ First you need 3 CSV Files
   U2, ...
 3. Weekly CSVs (the same format as google form provides)
 4. Put the csvs in the script's format and invoke the script using this command (require python3.7 and later):
-'''
+```
 python AutoFF.py 
-'''
+```
 
 Then you will be prompted to enter the submission file name.
