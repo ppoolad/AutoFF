@@ -1,5 +1,5 @@
 import pandas as pd
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 
 def pl_week(importFile, week_number,total='total.csv'):
@@ -93,7 +93,7 @@ def pl_week(importFile, week_number,total='total.csv'):
     totals_data.to_csv('total.csv', index=False)
     totals_data = totals_data.set_index("username")
     
-    normal = (weeklyData.values - weeklyData.values.min(0)) / (weeklyData.values.max(0) - weeklyData.values.min(0))
+    normal = np.array(weeklyData.values - weeklyData.values.min(0),dtype=np.float) / np.array(weeklyData.values.max(0) - weeklyData.values.min(0),dtype=np.float)
     #normal[:,0:-2] = 0
     #cellColours=normal
     #cellColours[:,-2:-1] = plt.cm.RdYlGn(normal[:,-2:-1])
@@ -101,7 +101,7 @@ def pl_week(importFile, week_number,total='total.csv'):
     fig, ax = plt.subplots(1,1)
     ax.axis('tight')
     ax.axis('off')
-    
+    #print(normal)
     rlab = weeklyData.index.tolist()
     clab = weeklyData.columns.tolist()
     vals = weeklyData.values.tolist()
@@ -116,8 +116,11 @@ def pl_week(importFile, week_number,total='total.csv'):
     the_table.scale(1,2)
     fig.savefig("weektable.pdf",bbox_inches="tight", pad_inches=0.25)
     plt.show()
-    normals = np.zeros(totals_data.shape)
-    normal = (totals_data.values - totals_data.values.min(0)) / (totals_data.values.max(0) - totals_data.values.min(0))
+    #normals = np.zeros(totals_data.shape)
+    normal = np.array(totals_data.values - totals_data.values.min(0),dtype=np.float) / np.array(totals_data.values.max(0) - totals_data.values.min(0),dtype=np.float)
+    #print(totals_data.values)
+    #print(totals_data.values - totals_data.values.min(0))
+    #print(totals_data.values.max(0))
     normals = normal
     fig2, ax2 = plt.subplots(1,1)
     ax2.axis('tight')
@@ -129,5 +132,6 @@ def pl_week(importFile, week_number,total='total.csv'):
     the_table.set_fontsize(10)
     the_table.auto_set_column_width(col=list(range(len(weeklyData.columns))))
     the_table.scale(1,2)
+    #print(totals_data.values)
     fig2.savefig("totaltable.pdf",bbox_inches="tight", pad_inches=0.25)
     plt.show()
