@@ -93,7 +93,7 @@ def pl_week(importFile, week_number,total='total.csv'):
     totals_data.to_csv('total.csv', index=False)
     totals_data = totals_data.set_index("username")
     
-    normal = np.array(weeklyData.values - weeklyData.values.min(0),dtype=np.float) / np.array(weeklyData.values.max(0) - weeklyData.values.min(0),dtype=np.float)
+    normal = np.array(weeklyData.values) / 7.0
     #normal[:,0:-2] = 0
     #cellColours=normal
     #cellColours[:,-2:-1] = plt.cm.RdYlGn(normal[:,-2:-1])
