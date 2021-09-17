@@ -117,7 +117,7 @@ def pl_week(importFile, week_number,total='total.csv'):
     fig.savefig("weektable.pdf",bbox_inches="tight", pad_inches=0.25)
     plt.show()
     #normals = np.zeros(totals_data.shape)
-    normal = np.array(totals_data.values - totals_data.values.min(0),dtype=np.float) / np.array(totals_data.values.max(0) - totals_data.values.min(0),dtype=np.float)
+    normal = np.array(totals_data.values) / 7.0
     #print(totals_data.values)
     #print(totals_data.values - totals_data.values.min(0))
     #print(totals_data.values.max(0))
