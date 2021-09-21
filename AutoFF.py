@@ -19,7 +19,7 @@ def pl_week(importFile, week_number,total='total.csv'):
         username = row[1].lower()
         username_list.append(username)
         for i in range(2, number_of_games): 
-            userPred = row[i].replace(" ","");
+            userPred = row[i].replace(" ","")
             ans = answers[i]
             if userPred == ans:
                 matchPoints = 7
@@ -55,7 +55,14 @@ def pl_week(importFile, week_number,total='total.csv'):
     
     for x in username_list:
         if x not in totals_dict['username']:
+            print(f'{x} is not in dictionary or invalid!')
             totals_dict['username'].append(x)
+            for weeks in range(week_number):
+                weekstring = f'W{weeks+1}'
+                totals_dict[weekstring].append(0)
+            totals_dict['Total'].append(0)
+            totals_dict['Rank'].append(-1)
+
     
     for key, value in totals_dict.items():
         if value == ['']*30:
@@ -135,3 +142,8 @@ def pl_week(importFile, week_number,total='total.csv'):
     #print(totals_data.values)
     fig2.savefig("totaltable.pdf",bbox_inches="tight", pad_inches=0.25)
     plt.show()
+
+if __name__ == "__main__":
+    week = 5
+    file = "PredW5.csv"
+    pl_week(file,week)
