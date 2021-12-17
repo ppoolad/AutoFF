@@ -21,7 +21,9 @@ def pl_week(importFile, week_number,total='total.csv'):
         for i in range(2, number_of_games): 
             userPred = row[i].replace(" ","")
             ans = answers[i]
-            if userPred == ans:
+            if ans[0] == 'x':
+                matchPoints = 0
+            elif userPred == ans:
                 matchPoints = 7
             elif int(ans[0]) - int(ans[2]) == int(userPred[0]) - int(userPred[2]):
                 matchPoints = 4
